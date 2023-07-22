@@ -83,6 +83,7 @@ io.on('connection', socket => {
 
   socket.on('disconnect-user', disconnect)
   socket.on('disconnect', disconnect)
+  socket.on('disconnecting', disconnect)
 
 })
 
