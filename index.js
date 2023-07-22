@@ -1,17 +1,21 @@
 const express = require("express")
 let app = express();
-let server = app.listen(3000);
+const port = process.env.PORT || 5000; 
+
+const http = require('http').Server(app);
 
 //const httpServer = require("http").createServer();
 const { instrument } = require('@socket.io/admin-ui')
 
-const io = require('socket.io')(server, {
+const io = require('socket.io')(http, {
   cors: {
     origin: ["http://localhost:3000", "https://admin.socket.io", "https://chat-app-sockets.netlify.app"],
     credentials: true,
     methods: ["GET", "POST"]
   }
 })
+
+http.listen(port, () => console.log(`Listening on port ${port}`));
 
 // Example of Users[0] = { id: "socket.id", name: "User1" }
 let Users = []
