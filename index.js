@@ -20,9 +20,6 @@ app.use(cors({
   origin: '*'
 }))
 
-
-http.listen(port, () => console.log(`Listening on port ${port}`));
-
 // Example of Users[0] = { id: "socket.id", name: "User1" }
 let Users = []
 
@@ -90,3 +87,11 @@ io.on('connection', socket => {
 })
 
 instrument(io, { auth: false })
+
+app.get('/', (req, res) => {
+  return res.send('Working')
+})
+
+http.listen(5000, () => {
+  console.log('Port 5000')
+})
