@@ -1,8 +1,9 @@
 const express = require("express")
 let app = express();
 const port = process.env.PORT || 5000; 
+const cors = require('cors')
 
-const http = require('http').Server(app);
+const http = require('http').createServer(app);
 
 //const httpServer = require("http").createServer();
 const { instrument } = require('@socket.io/admin-ui')
@@ -14,6 +15,11 @@ const io = require('socket.io')(http, {
     methods: ["GET", "POST"]
   }
 })
+
+app.use(cors({
+  origin: '*'
+}))
+
 
 http.listen(port, () => console.log(`Listening on port ${port}`));
 
