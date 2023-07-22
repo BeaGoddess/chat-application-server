@@ -1,7 +1,11 @@
-const httpServer = require("http").createServer();
+const express = require("express")
+let app = express();
+let server = app.listen(3000);
+
+//const httpServer = require("http").createServer();
 const { instrument } = require('@socket.io/admin-ui')
 
-const io = require('socket.io')(httpServer, {
+const io = require('socket.io')(server, {
   cors: {
     origin: ["http://localhost:3000", "https://admin.socket.io", "https://chat-app-sockets.netlify.app"],
     credentials: true
@@ -55,10 +59,10 @@ io.on('connection', socket => {
 
   function disconnect() {
     let user = Users.find(object => object.id === socket.id) !== undefined ?
-    Users.find(object => object.id === socket.id).name : ""
+      Users.find(object => object.id === socket.id).name : ""
 
     socket.broadcast.emit('remove-user', user)
-    
+
     Users = Users.filter(object => {
       return object.id !== socket.id;
     })
