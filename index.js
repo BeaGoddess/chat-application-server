@@ -1,6 +1,7 @@
+const httpServer = require("http").createServer();
 const { instrument } = require('@socket.io/admin-ui')
 
-const io = require('socket.io')(3001, {
+const io = require('socket.io')(httpServer, {
   cors: {
     origin: ["http://localhost:3000", "https://admin.socket.io", "https://chat-app-sockets.netlify.app"],
     credentials: true
