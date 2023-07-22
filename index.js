@@ -1,12 +1,11 @@
 const express = require("express")
 let app = express();
-const port = process.env.PORT || 5000; 
+const port = process.env.PORT || 5000;
 const cors = require('cors')
 
 const http = require('http').createServer(app);
 
 //const httpServer = require("http").createServer();
-const { instrument } = require('@socket.io/admin-ui')
 
 /*
 const io = require('socket.io')(http, {
@@ -20,10 +19,17 @@ const io = require('socket.io')(http, {
 
 const io = require('socket.io')(http)
 
-
 app.use(cors({
   origin: '*'
 }))
+
+app.get('/', (req, res) => {
+  return res.send('Working')
+})
+
+http.listen(5000, () => {
+  console.log('Port 5000')
+})
 
 // Example of Users[0] = { id: "socket.id", name: "User1" }
 let Users = []
@@ -91,12 +97,3 @@ io.on('connection', socket => {
 
 })
 
-instrument(io, { auth: false })
-
-app.get('/', (req, res) => {
-  return res.send('Working')
-})
-
-http.listen(5000, () => {
-  console.log('Port 5000')
-})
