@@ -8,6 +8,7 @@ const http = require('http').createServer(app);
 //const httpServer = require("http").createServer();
 const { instrument } = require('@socket.io/admin-ui')
 
+/*
 const io = require('socket.io')(http, {
   cors: {
     origin: '*',
@@ -15,6 +16,10 @@ const io = require('socket.io')(http, {
     methods: ["GET", "POST"]
   }
 })
+*/
+
+const io = require('socket.io')(http)
+
 
 app.use(cors({
   origin: '*'
