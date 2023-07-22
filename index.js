@@ -9,7 +9,7 @@ const { instrument } = require('@socket.io/admin-ui')
 
 const io = require('socket.io')(http, {
   cors: {
-    origin: "https://chat-app-sockets.netlify.app",
+    origin: '*',
     credentials: true,
     methods: ["GET", "POST"]
   }
